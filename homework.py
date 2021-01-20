@@ -23,6 +23,7 @@ def square_all(*args):
 def logger(func):
     @wraps(func)
     def wrapper(*args):
+        func(*args)
         print(func.__name__ + " called with " + str(args))
 
     return wrapper
