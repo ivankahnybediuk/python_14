@@ -22,8 +22,8 @@ def square_all(*args):
 
 def logger(func):
     @wraps(func)
-    def wrapper(*args):
-        func(*args)
+    def wrapper(*args, **kwargs):
+        func(*args, **kwargs)
         print(func.__name__ + " called with " + str(args))
 
     return wrapper
@@ -59,8 +59,8 @@ assert create_slogan("Steve") == "Steve drinks * in his brand new *!"
 def stop_words(words: list):
     def my_decorator(func):
         @wraps(func)
-        def wrap(arg_string):
-            result = func(arg_string)
+        def wrap(*args, **kwargs):
+            result = func(*args, **kwargs)
             for word in list(map(lambda x: x.lower(), words)):
                 if word in result.lower():
                     result = result.lower().replace(word, "*")
